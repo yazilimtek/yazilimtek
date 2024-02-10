@@ -1,3 +1,3 @@
-#Yazılım Teknisyeni
+# Yazılım Teknisyeni
 <br>
-##Freelance Hizmet Uzmanı
+## Freelance Hizmet Uzmanı
