@@ -437,6 +437,9 @@ h6 {
   #hero .hero-img img {
     width: 70%;
   }
+    .portfolio-info{
+  display:none;
+  }
 }
 
 @media (max-width: 575px) {
