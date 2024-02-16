@@ -34,23 +34,67 @@
   <!-- ======= Head Placeholder Section ======= -->
 
   <!-- ======= Head Placeholder Section ======= -->
-<div id="head-placeholder"></div>
+<div head-include-html="head.html"></div>
 <script>
-    fetch('https://yazilimteknisyeni.com.tr/head.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('head-placeholder').innerHTML = html;
-        });
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /* Loop through a collection of all HTML elements: */
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("head-include-html");
+    if (file) {
+      /* Make an HTTP request using the attribute value as the file name: */
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute("head-include-html");
+          includeHTML();
+        }
+      }
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /* Exit the function: */
+      return;
+    }
+  }
+}
 </script>
 
   
  <!-- ======= Header Placeholder Section ======= -->
-<div id="header-placeholder"></div>
+<div header-include-html="header.html"></div>
 <script>
-    fetch('https://yazilimteknisyeni.com.tr/header.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('header-placeholder').innerHTML = html;
-        });
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /* Loop through a collection of all HTML elements: */
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("header-include-html");
+    if (file) {
+      /* Make an HTTP request using the attribute value as the file name: */
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute("header-include-html");
+          includeHTML();
+        }
+      }
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /* Exit the function: */
+      return;
+    }
+  }
+}
 </script>
  <!-- ======= Header Placeholder Section ======= -->
