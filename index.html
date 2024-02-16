@@ -31,39 +31,50 @@
   <meta property="og:image:height" content="1440" />
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yazilimteknisyeni.com.tr/index.html" />
-  <!-- ======= Head Placeholder Section ======= -->
-  <!-- Favicons -->
-  <link href="https://yazilimteknisyeni.com.tr/assets/img/favicon.png" rel="icon">
-  <link href="https://yazilimteknisyeni.com.tr/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- HTML Press -->
+  <script>
+function includeHTML(attributeName) {
+  var z, i, elmnt, file, xhttp;
+  /* Loop through a collection of all HTML elements: */
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute(attributeName);
+    if (file) {
+      /* Make an HTTP request using the attribute value as the file name: */
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute(attributeName);
+          includeHTML(attributeName);
+        }
+      }
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /* Exit the function: */
+      return;
+    }
+  }
+}
+</script>
+   <!-- HTML Press -->
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
   
-  <link href="https://yazilimteknisyeni.com.tr/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://yazilimteknisyeni.com.tr/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://yazilimteknisyeni.com.tr/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="https://yazilimteknisyeni.com.tr/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="https://yazilimteknisyeni.com.tr/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="https://yazilimteknisyeni.com.tr/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <!-- <link href="assets/vendor/aos/aos.css" rel="stylesheet"> -->
-
-  <!-- Template Main CSS File -->
-  <link href="https://yazilimteknisyeni.com.tr/assets/css/style.css" rel="stylesheet">
+  <!-- ======= Head Placeholder Section ======= -->
+<div include-html="head.html"></div>
+<script>
+  includeHTML("include-html");
+</script>
   <!-- ======= Head Placeholder Section ======= -->
 
-</head>
-
-<body>
    <!-- ======= Header Placeholder Section ======= -->
-<div id="header-placeholder"></div>
+<div include-html="header.html"></div>
 <script>
-    fetch('https://yazilimteknisyeni.com.tr/header.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('header-placeholder').innerHTML = html;
-        });
+  includeHTML("include-html");
 </script>
  <!-- ======= Header Placeholder Section ======= -->
 
@@ -947,13 +958,9 @@
 
   </main><!-- End #main -->
 <!-- ======= Footer Placeholder Section ======= -->
-<div id="footer-placeholder"></div>
+  <div include-html="footer.html"></div>
 <script>
-    fetch('https://yazilimteknisyeni.com.tr/footer.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('footer-placeholder').innerHTML = html;
-        });
+  includeHTML("include-html");
 </script>
 <!-- ======= Footer Placeholder Section ======= -->
 </body>
