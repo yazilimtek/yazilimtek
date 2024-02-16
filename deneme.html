@@ -37,15 +37,15 @@
   <!-- ======= Head Placeholder Section ======= -->
   
  <!-- ======= Header Placeholder Section ======= -->
-  <script>
-function includeHTML() {
+<script>
+function includeHTML(attributeName) {
   var z, i, elmnt, file, xhttp;
   /* Loop through a collection of all HTML elements: */
   z = document.getElementsByTagName("*");
   for (i = 0; i < z.length; i++) {
     elmnt = z[i];
     /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("header-include-html");
+    file = elmnt.getAttribute(attributeName);
     if (file) {
       /* Make an HTTP request using the attribute value as the file name: */
       xhttp = new XMLHttpRequest();
@@ -54,8 +54,8 @@ function includeHTML() {
           if (this.status == 200) {elmnt.innerHTML = this.responseText;}
           if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
           /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute("header-include-html");
-          includeHTML();
+          elmnt.removeAttribute(attributeName);
+          includeHTML(attributeName);
         }
       }
       xhttp.open("GET", file, true);
@@ -66,10 +66,16 @@ function includeHTML() {
   }
 }
 </script>
-<div header-include-html="header.html"></div>
+  
+<div include-html="header.html"></div>
 <script>
-  includeHTML();
+  includeHTML("include-html");
 </script>
  <!-- ======= Header Placeholder Section ======= -->
+
+  <div include-html="footer.html"></div>
+<script>
+  includeHTML("include-html");
+</script>
 </body>
 </html>
