@@ -30,36 +30,7 @@ function includeHTML(attributeName) {
   }
 }
 </script>
-  <script>
-        // Başka bir HTML dosyasını import etmek için bir XMLHttpRequest yapalım
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // HTML içeriğini alalım
-                var htmlContent = this.responseText;
-                
-                // CSS ve JavaScript dosyalarının linklerini alalım
-                var cssLinks = htmlContent.match(/<link.*?href=["'](.*?)["']/g);
-                                
-                // CSS linklerini head'e ekle
-                cssLinks.forEach(function(link) {
-                    var href = link.match(/href=["'](.*?)["']/)[1];
-                    var cssLink = document.createElement('link');
-                    cssLink.rel = 'stylesheet';
-                    cssLink.href = href;
-                    document.head.appendChild(cssLink);
-                });
-                
-             
-                // HTML içeriğini yerleştirelim
-                document.getElementById("importedContent").innerHTML = htmlContent;
-            }
-        };
-        xhttp.open("GET", "head.html", true);
-        xhttp.send();
-    </script>
-  
-   <!-- HTML Press -->
+ <!-- HTML Press -->
 <head>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta name="robots" content="index, follow">
@@ -93,7 +64,7 @@ function includeHTML(attributeName) {
 
   
   <!-- ======= Head Placeholder Section ======= -->
-<div id="importedContent"></div>
+<link rel="import" href="https://yazilimteknisyeni.com.tr/head.html" />
 
   <!-- ======= Head Placeholder Section ======= -->
 
