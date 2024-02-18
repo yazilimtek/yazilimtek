@@ -49,18 +49,15 @@
   <!-- Template Main CSS File -->
   <link href="https://yazilimteknisyeni.com.tr/assets/css/style.css" rel="stylesheet">
   <link href="https://yazilimteknisyeni.com.tr/assets/css/spec.css" rel="stylesheet">
+  <script src="../js/body.js"></script>
 </head>
 
 <body>
 
    <!-- ======= Header Placeholder Section ======= -->
-<div id="header-placeholder"></div>
+<div include-html="../content/header.html"></div>
 <script>
-    fetch('https://yazilimteknisyeni.com.tr/header.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('header-placeholder').innerHTML = html;
-        });
+  includeHTML("include-html");
 </script>
  <!-- ======= Header Placeholder Section ======= -->
 
@@ -145,13 +142,9 @@
 
   </main><!-- End #main -->
 
-<div id="footer-placeholder"></div>
+<div include-html="../content/footer"></div>
 <script>
-    fetch('https://yazilimteknisyeni.com.tr/footer.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('footer-placeholder').innerHTML = html;
-        });
+  includeHTML("include-html");
 </script>
 </body>
 
