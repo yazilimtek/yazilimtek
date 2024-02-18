@@ -65,9 +65,10 @@ function includeHTML(attributeName) {
   
   <!-- ======= Head Placeholder Section ======= -->
 
-   <link rel="import" href="/head.html" />
-   <!--#include virtual="/head.html" -->
-   <!--#include file="/head.txt" -->
+   <include virtual="/head.html" >
+   <include file="/head.txt" >
+   <include src="head.html"></include>
+     
   <!-- ======= Head Placeholder Section ======= -->
 
    <!-- ======= Header Placeholder Section ======= -->
