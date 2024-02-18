@@ -62,6 +62,15 @@ function includeHTML(attributeName) {
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yazilimteknisyeni.com.tr/index.html" />
 
+   <script>
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "import.html");
+    xhr.onload = function() {
+      const importedContent = xhr.responseText;
+      document.body.appendChild(importedContent);
+    };
+    xhr.send();
+  </script>
   
   <!-- ======= Head Placeholder Section ======= -->
 
