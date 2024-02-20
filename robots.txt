@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yazilimteknisyeni.com.tr/sitemap.xml
