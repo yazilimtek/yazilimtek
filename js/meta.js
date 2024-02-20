@@ -23,7 +23,7 @@
         document.querySelector('link[rel="canonical"]').setAttribute("href", canonicalURL);
         document.querySelector('meta[property="og:url"]').setAttribute("content", canonicalURL);
 
-    var imageFileName = fileName.replace(".html", ".jpg");
+    var imageFileName = fileName.replace(".html", ".webp");
 
     var imageURL = window.location.origin + '/img/' + imageFileName;
         document.querySelector('meta[property="og:image"]').setAttribute("content", imageURL);
