@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", blogFolder, true);
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
             console.log(xhr.responseText); // Yanıtı konsola yazdır
             var files = xhr.responseText.split("\n");
 
