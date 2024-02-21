@@ -1,34 +1,35 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function() {
     var blogPostsContainer = document.getElementById("blog-posts");
-    var blogFolder = "https://yazilimteknisyeni.com.tr/blog/";
+    var blogFolder = "blog/";
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", blogFolder, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var files = xhr.responseText.split("\n");
+    var filesResponse = await fetch(blogFolder);
+    var files = await filesResponse.text();
 
-            // Tüm dosyaların içeriğini tek bir istekte alın
-            Promise.all(files.map(file => fetch(blogFolder + file).then(response => response.text())))
-                .then(contents => {
-                    contents.forEach(content => {
-                        var tempDiv = document.createElement("div");
-                        tempDiv.innerHTML = content;
+    files.split("\n").forEach(async function(file) {
+        file = file.trim();
+        if (file.endsWith(".html")) {
+            var postFilePath = blogFolder + file;
+            var postResponse = await fetch(postFilePath);
+            var postHTML = await postResponse.text();
 
-                        var postLink = blogFolder + content;
-                        var postTitle = tempDiv.querySelector("title").innerText;
+            var tempDiv = document.createElement("div");
+            tempDiv.innerHTML = postHTML;
 
-                        var postDiv = document.createElement("div");
-                        postDiv.classList.add("blog-post");
-                        postDiv.innerHTML = "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>";
+            var postLink = postFilePath;
+            var postTitleElement = tempDiv.querySelector("meta[name='og:title']");
+            var postTitle = postTitleElement ? postTitleElement.innerText : "Başlık bulunamadı";
+            var postDescriptionElement = tempDiv.querySelector("meta[name='description']");
+            var postDescription = postDescriptionElement ? postDescriptionElement.getAttribute("content") : "Açıklama bulunamadı";
+            var postImageElement = tempDiv.querySelector("meta[property='og:image']");
+            var postImage = postImageElement ? postImageElement.getAttribute("content") : "Resim bulunamadı";
 
-                        blogPostsContainer.appendChild(postDiv);
-                    });
-                })
-                .catch(error => {
-                    console.error("Hata oluştu: ", error);
-                });
+            var postDiv = document.createElement("div");
+            postDiv.classList.add("blog-post");
+            postDiv.innerHTML = "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>" +
+                                "<p>" + postDescription + "</p>" +
+                                "<img src='" + postImage + "' alt='" + postTitle + "'>";
+
+            blogPostsContainer.appendChild(postDiv);
         }
-    };
-    xhr.send();
+    });
 });
