@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (file.endsWith(".html") && file !== "index.html") {
                     // Blog yazısının dosya yolunu oluşturun
                     var postFilePath = "yazilimteknisyeni.com.tr/" + blogFolder + file;
-                    console.log(postFilePath);
+                    console.log("Dosya Yolu:" + postFilePath);
                     // Yeni bir div oluşturun ve içeriğini blog yazısıyla doldurun
                     var postDiv = document.createElement("div");
                     postDiv.classList.add("blog-post");
