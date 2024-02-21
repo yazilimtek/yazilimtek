@@ -1,32 +1,28 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     var blogPostsContainer = document.getElementById("blog-posts");
     var blogFolder = "../blog/";
 
-    // AJAX isteği göndermek için yeni bir XMLHttpRequest nesnesi oluşturun
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", blogFolder, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText); // Yanıtı konsola yazdır
-            var files = xhr.responseText.split("\n");
+    var filesResponse = await fetch(blogFolder);
+    var files = await filesResponse.text();
 
-            // Klasör içindeki her dosya için döngü oluşturun
-            files.forEach(function(file) {
-                file = file.trim();
-                if (file.endsWith(".html") && file !== "index.html") {
-                    // Blog yazısının dosya yolunu oluşturun
-                    var postFilePath = "yazilimteknisyeni.com.tr/" + blogFolder + file;
-                    console.log("Dosya Yolu:" + postFilePath);
-                    // Yeni bir div oluşturun ve içeriğini blog yazısıyla doldurun
-                    var postDiv = document.createElement("div");
-                    postDiv.classList.add("blog-post");
-                    postDiv.innerHTML = "<h2><a href='" + postFilePath + "'>" + file + "</a></h2>";
+    files.split("\n").forEach(async function(file) {
+        file = file.trim();
+        if (file.endsWith(".html")) {
+            var postFilePath = blogFolder + file;
+            var postResponse = await fetch(postFilePath);
+            var postHTML = await postResponse.text();
 
-                    // Blog yazısını göstermek için ana div'e ekleyin
-                    blogPostsContainer.appendChild(postDiv);
-                }
-            });
+            var tempDiv = document.createElement("div");
+            tempDiv.innerHTML = postHTML;
+
+            var postLink = postFilePath;
+            var postTitle = tempDiv.querySelector("title").innerText;
+
+            var postDiv = document.createElement("div");
+            postDiv.classList.add("blog-post");
+            postDiv.innerHTML = "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>";
+
+            blogPostsContainer.appendChild(postDiv);
         }
-    };
-    xhr.send();
+    });
 });
