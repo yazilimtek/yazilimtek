@@ -3,11 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Blog yazılarının bulunduğu klasörün yolu
     var blogFolder = "blog/";
-
-    // Dosya adı
-    var indexFileName = "blog/index.html";
-
-    // AJAX isteği göndermek için yeni bir XMLHttpRequest nesnesi oluştur
+    // AJAX isteği göndermek için yeni bir XMLHttpRequest nesnesi oluşturun
     var xhr = new XMLHttpRequest();
     xhr.open("GET", blogFolder, true);
     xhr.onreadystatechange = function () {
@@ -15,22 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
             // AJAX isteği tamamlandığında, klasör içeriğini işle
             var files = xhr.responseText.split("\n");
 
-            // Son 4 yazıyı göstermek için bir döngü oluşturun
-            for (var i = Math.max(0, files.length - 4); i < files.length; i++) {
-                var file = files[i].trim();
-                if (file.endsWith(".html")) {
-
-         
-                    
+            // Klasör içindeki her dosya için döngü oluşturun
+            files.forEach(function(file) {
+                file = file.trim();
+                if (file.endsWith(".html") && file !== "index.html") {
                     // Blog yazısının dosya yolu
                     var postFilePath = blogFolder + file;
 
-           // index.html dosyasını atlayın
-        if (postFileName === postFilePath) {
-            continue;
-        }
-                    
-                    // Blog yazısını içeriği çekmek için bir AJAX isteği gönderin
+                    // Yeni bir XMLHttpRequest nesnesi oluşturun
                     var xhrPost = new XMLHttpRequest();
                     xhrPost.open("GET", postFilePath, true);
                     xhrPost.onreadystatechange = function () {
@@ -43,14 +31,16 @@ document.addEventListener("DOMContentLoaded", function () {
                             tempDiv.innerHTML = postHTML;
 
                             // Blog yazısının linkini, başlığını, resmini ve meta description'ını alın
-                            var postTitle = tempDiv.querySelector("meta[property='og:title']").content;
-                            var postImage = tempDiv.querySelector("meta[property='og:image']").content;
-                            var postLink = "siteniz.com/" + file;
+                            var postLink = postFilePath;
+                            var postTitle = tempDiv.querySelector("title").innerText;
+                            var postImage = tempDiv.querySelector("meta[property='og:image']").getAttribute("content");
+                            var postMetaDescription = tempDiv.querySelector("meta[property='og:description']").getAttribute("content");
 
                             // Blog yazısını göstermek için bir div oluşturun
                             var postDiv = document.createElement("div");
                             postDiv.innerHTML = "<a href='" + postLink + "'><img src='" + postImage + "' alt='" + postTitle + "'></a>" +
-                                                "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>";
+                                "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>" +
+                                "<p>" + postMetaDescription + "</p>";
 
                             // Blog yazısını göstermek için ana div'e ekleyin
                             blogPostsContainer.appendChild(postDiv);
@@ -58,9 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     };
                     xhrPost.send();
                 }
-            }
+            });
         }
     };
     xhr.send();
 });
-
