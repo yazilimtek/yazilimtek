@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             // Blog yazısını göstermek için bir div oluşturun
                             var postDiv = document.createElement("div");
-                            postDiv.innerHTML = "<a href='" + postLink + "'><img src='" + postImage + "' alt='" + postTitle + "'></a>" +
-                                                "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>";
+                            postDiv.innerHTML = "<div class='blog-area'><a class='blog-link' href='" + postLink + "'><img class='image-link' src='" + postImage + "' alt='" + postTitle + "'>" +
+                                                "<h2 class='title-area'>" + postTitle + "</h2></a></div>";
 
                             // Blog yazısını göstermek için ana div'e ekleyin
                             blogPostsContainer.appendChild(postDiv);
