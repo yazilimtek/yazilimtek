@@ -35,9 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             var postFileName = postFilePath;
 
                             // Blog yazısının linkini, başlığını, resmini ve meta description'ını alın
-                            var postLink = postFileName;
-                            var postTitle = tempDiv.querySelector("h1").innerText;
-                            var postImage = tempDiv.querySelector("img").src;
+                            var postLink = postFileName+".html";
+                            var postTitle = tempDiv.querySelector("title").innerText;
+                            var postImage = tempDiv.querySelector("meta[property='og:image']").content;
                             var postMetaDescription = tempDiv.querySelector("meta[name='description']").content;
 
                             // Blog yazısını göstermek için bir div oluşturun
