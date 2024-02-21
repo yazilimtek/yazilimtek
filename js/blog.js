@@ -1,45 +1,37 @@
-// Blog klasörü URL'si
-var blogFolderUrl = "https://yazilimteknisyeni.com.tr/blog/";
+// Rastgele 4 blog yazısı almak için bir dizi oluştur
+var blogPosts = [];
 
-// Fetch API kullanarak blog klasöründeki içerikleri alma
-fetch(blogFolderUrl)
-  .then(response => {
-    // HTTP durum kodunu kontrol et
-    if (!response.ok) {
-      throw new Error('Blog klasörü yüklenirken bir hata oluştu: ' + response.status);
-    }
-    // Metni al ve döndür
-    return response.text();
-  })
+// Blog klasöründeki yazıların listesini al
+fetch('https://yazilimteknisyeni.com.tr/blog/')
+  .then(response => response.text())
   .then(data => {
-    // Veriyi kullan
+    // HTML içeriğini ayrıştır
     var parser = new DOMParser();
     var doc = parser.parseFromString(data, 'text/html');
 
     // Tüm linkleri al
     var links = Array.from(doc.querySelectorAll('a')).map(a => a.href);
 
-    // HTML dosyalarını filtrele
+    // Sadece .html uzantılı olanları filtrele
     var htmlFiles = links.filter(link => link.toLowerCase().endsWith('.html'));
 
-    // Rastgele 4 dosya seç
-    var randomFiles = [];
-    while (randomFiles.length < 4 && htmlFiles.length > 0) {
+    // Rastgele 4 yazı seç
+    while (blogPosts.length < 4) {
       var randomIndex = Math.floor(Math.random() * htmlFiles.length);
-      var randomFile = htmlFiles.splice(randomIndex, 1)[0];
-      randomFiles.push(randomFile);
+      var randomPost = htmlFiles[randomIndex];
+      if (!blogPosts.includes(randomPost)) {
+        blogPosts.push(randomPost);
+      }
     }
 
-    // Seçilen dosyaların linklerini sayfaya ekleyin
-    var blogPostsContainer = document.getElementById("blog-posts");
-    randomFiles.forEach(url => {
+    // Seçilen yazıları anasayfada göster
+    var blogPostsContainer = document.getElementById('blog-posts');
+    blogPosts.forEach(post => {
       var linkElement = document.createElement('a');
-      linkElement.href = url;
-      linkElement.textContent = url; // Link metni olarak URL'i kullandık, isteğinize göre değiştirebilirsiniz
+      linkElement.href = post;
+      linkElement.textContent = post; // Link metni olarak URL'yi gösterir, istediğiniz şekilde düzenleyebilirsiniz
       blogPostsContainer.appendChild(linkElement);
-      blogPostsContainer.appendChild(document.createElement('br'));
+      blogPostsContainer.appendChild(document.createElement('br')); // Her link arasına bir satır ekler
     });
   })
-  .catch(error => {
-    console.error('Blog klasörü yüklenirken bir hata oluştu:', error);
-  });
+  .catch(error => console.error('Yazılar yüklenirken bir hata oluştu:', error));
