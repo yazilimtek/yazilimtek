@@ -1,35 +1,77 @@
-document.addEventListener("DOMContentLoaded", async function() {
-    var blogPostsContainer = document.getElementById("blog-posts");
-    var blogFolder = "blog/";
+// Klasörün URL'si
+var folderUrl = "siteadi.com.tr/blog/";
 
-    var filesResponse = await fetch(blogFolder);
-    var files = await filesResponse.text();
+// Fetch API kullanarak içerik alma
+fetch(folderUrl)
+  .then(response => {
+    // HTTP durum kodunu kontrol et
+    if (!response.ok) {
+      throw new Error('Klasör yüklenirken bir hata oluştu: ' + response.status);
+    }
+    // Metni al ve döndür
+    return response.text();
+  })
+  .then(data => {
+    // Veriyi kullan
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(data, 'text/html');
 
-    files.split("\n").forEach(async function(file) {
-        file = file.trim();
-        if (file.endsWith(".html")) {
-            var postFilePath = blogFolder + file;
-            var postResponse = await fetch(postFilePath);
-            var postHTML = await postResponse.text();
+    // Tüm linkleri al
+    var links = Array.from(doc.querySelectorAll('a')).map(a => a.href);
 
-            var tempDiv = document.createElement("div");
-            tempDiv.innerHTML = postHTML;
+    // HTML dosyalarını filtrele
+    var htmlFiles = links.filter(link => link.toLowerCase().endsWith('.html'));
 
-            var postLink = postFilePath;
-            var postTitleElement = tempDiv.querySelector("meta[name='og:title']");
-            var postTitle = postTitleElement ? postTitleElement.innerText : "Başlık bulunamadı";
-            var postDescriptionElement = tempDiv.querySelector("meta[name='description']");
-            var postDescription = postDescriptionElement ? postDescriptionElement.getAttribute("content") : "Açıklama bulunamadı";
-            var postImageElement = tempDiv.querySelector("meta[property='og:image']");
-            var postImage = postImageElement ? postImageElement.getAttribute("content") : "Resim bulunamadı";
+    // Rastgele 4 dosya seç
+    var randomFiles = [];
+    while (randomFiles.length < 4) {
+      var randomIndex = Math.floor(Math.random() * htmlFiles.length);
+      var randomFile = htmlFiles[randomIndex];
+      if (!randomFiles.includes(randomFile)) {
+        randomFiles.push(randomFile);
+      }
+    }
 
-            var postDiv = document.createElement("div");
-            postDiv.classList.add("blog-post");
-            postDiv.innerHTML = "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>" +
-                                "<p>" + postDescription + "</p>" +
-                                "<img src='" + postImage + "' alt='" + postTitle + "'>";
-
-            blogPostsContainer.appendChild(postDiv);
+    // Fetch API kullanarak içerik alma
+    Promise.all(randomFiles.map(url =>
+      fetch(url).then(response => {
+        if (!response.ok) {
+          throw new Error('Yazı yüklenirken bir hata oluştu: ' + response.status);
         }
+        return response.text();
+      })
+    ))
+    .then(dataArray => {
+      // Veriyi kullan
+      dataArray.forEach((data, index) => {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(data, 'text/html');
+
+        // Başlık al
+        var postTitle = doc.querySelector('title').innerText;
+
+        // Açıklama al (meta etiketi içindeki description)
+        var postDescription = doc.querySelector('meta[name="description"]').content;
+
+        // Resim al (meta etiketi içindeki og:image)
+        var postImage = doc.querySelector('meta[property="og:image"]').content;
+
+        // Yazı içeriğini oluştur
+        var postHTML = "<div class='blog-post'>";
+        postHTML += "<h2>" + postTitle + "</h2>";
+        postHTML += "<p>" + postDescription + "</p>";
+        postHTML += "<img src='" + postImage + "' alt='" + postTitle + "'>";
+        postHTML += "</div>";
+
+        // Yazı içeriğini sayfaya ekleyin
+        var blogPostsContainer = document.getElementById("blog-posts");
+        blogPostsContainer.innerHTML += postHTML;
+      });
+    })
+    .catch(error => {
+      console.error('Yazı yüklenirken bir hata oluştu:', error);
     });
-});
+  })
+  .catch(error => {
+    console.error('Klasör yüklenirken bir hata oluştu:', error);
+  });
