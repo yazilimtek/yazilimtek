@@ -1,5 +1,5 @@
 // Klasörün URL'si
-var folderUrl = "siteadi.com.tr/blog/";
+var folderUrl = "https://yazilimteknisyeni.com.tr//blog/";
 
 // Fetch API kullanarak içerik alma
 fetch(folderUrl)
