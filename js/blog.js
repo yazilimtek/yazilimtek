@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var blogPostsContainer = document.getElementById("blog-posts");
-    var blogFolder = "blog/";
+    var blogFolder = "../blog/";
 
     // AJAX isteği göndermek için yeni bir XMLHttpRequest nesnesi oluşturun
     var xhr = new XMLHttpRequest();
