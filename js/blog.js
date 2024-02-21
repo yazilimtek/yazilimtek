@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var postLink = postFileName;
             var postTitle = tempDiv.querySelector("meta[name='og:title']").getAttribute("content");
             var postImage = tempDiv.querySelector("meta[property='og:image']").getAttribute("content");
-            var postMetaDescription = tempDiv.querySelector("meta[property='og:description']").getAttribute("content");
+            var postMetaDescription = tempDiv.querySelector("meta[name='description']").getAttribute("content");
 
             // Blog yazısını göstermek için bir div oluşturun
             var postDiv = document.createElement("div");
