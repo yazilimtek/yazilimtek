@@ -10,7 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Son 4 yazıyı göstermek için bir döngü oluşturun
     for (var i = 1; i <= 2; i++) {
         // Blog yazısının dosya adını oluşturun
-        var postFileName = "post" + i + ".html";
+      
+        var file = files[i].trim();
+                if (file.endsWith(".html")) {
+                    // Blog yazısının dosya yolu
+                    var postFileName = blogFolder + file;
 
         // index.html dosyasını atlayın
         if (postFileName === indexFileName) {
