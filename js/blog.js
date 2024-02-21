@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function() {
     var blogPostsContainer = document.getElementById("blog-posts");
-    var blogFolder = "../blog/";
-console.log(blogFolder);
+    var blogFolder = "https://yazilimteknisyeni.com.tr/blog/";
     var filesResponse = await fetch(blogFolder);
     var files = await filesResponse.text();
 
@@ -11,7 +10,6 @@ console.log(blogFolder);
             var postFilePath = blogFolder + file;
             var postResponse = await fetch(postFilePath);
             var postHTML = await postResponse.text();
-console.log(postFilePath);
             var tempDiv = document.createElement("div");
             tempDiv.innerHTML = postHTML;
 
