@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     xhr.open("GET", blogFolder, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText); // Yanıtı konsola yazdır
             var files = xhr.responseText.split("\n");
 
             // Klasör içindeki her dosya için döngü oluşturun
