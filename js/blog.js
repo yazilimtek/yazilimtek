@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", blogFolder, true);
     xhr.onreadystatechange = function () {
-        if (xhr.status === 200) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseText); // Yanıtı konsola yazdır
             var files = xhr.responseText.split("\n");
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (file.endsWith(".html") && file !== "index.html") {
                     // Blog yazısının dosya yolunu oluşturun
                     var postFilePath = "yazilimteknisyeni.com.tr/" + blogFolder + file;
-
+                    console.log(postFilePath);
                     // Yeni bir div oluşturun ve içeriğini blog yazısıyla doldurun
                     var postDiv = document.createElement("div");
                     postDiv.classList.add("blog-post");
