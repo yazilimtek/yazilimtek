@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Blog yazısının linkini, başlığını, resmini ve meta description'ını alın
             var postLink = postFileName;
-            var postTitle = tempDiv.querySelector("meta[property='og:title']").getAttribute("content");
+            var postTitle = tempDiv.querySelector("meta[name='og:title']").getAttribute("content");
             var postImage = tempDiv.querySelector("meta[property='og:image']").getAttribute("content");
             var postMetaDescription = tempDiv.querySelector("meta[property='og:description']").getAttribute("content");
 
@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Blog yazısını göstermek için ana div'e ekleyin
             blogPostsContainer.appendChild(postDiv);
+            console.log(postHTML);
         }
     };
     xhr.send();
-    console.log(postHTML);
-
+    
 });
