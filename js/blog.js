@@ -31,20 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             var tempDiv = document.createElement("div");
                             tempDiv.innerHTML = postHTML;
 
-                            // Blog yazısının dosya adını alın
-                            var postFileName = postFilePath;
-
                             // Blog yazısının linkini, başlığını, resmini ve meta description'ını alın
-                            var postLink = postFileName+".html";
-                            var postTitle = tempDiv.querySelector("title").innerText;
+                            var postTitle = tempDiv.querySelector("meta[property='og:title']").content;
                             var postImage = tempDiv.querySelector("meta[property='og:image']").content;
-                            var postMetaDescription = tempDiv.querySelector("meta[name='description']").content;
+                            var postLink = "yazilimteknisyeni.com.tr/" + file;
 
                             // Blog yazısını göstermek için bir div oluşturun
                             var postDiv = document.createElement("div");
                             postDiv.innerHTML = "<a href='" + postLink + "'><img src='" + postImage + "' alt='" + postTitle + "'></a>" +
-                                                "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>" +
-                                                "<p>" + postMetaDescription + "</p>";
+                                                "<h2><a href='" + postLink + "'>" + postTitle + "</a></h2>";
 
                             // Blog yazısını göstermek için ana div'e ekleyin
                             blogPostsContainer.appendChild(postDiv);
