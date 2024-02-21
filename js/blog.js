@@ -32,44 +32,14 @@ fetch(folderUrl)
       }
     }
 
-    // Fetch API kullanarak içerik alma
-    Promise.all(randomFiles.map(url =>
-      fetch(url).then(response => {
-        if (!response.ok) {
-          throw new Error('Yazı yüklenirken bir hata oluştu: ' + response.status);
-        }
-        return response.text();
-      })
-    ))
-    .then(dataArray => {
-      // Veriyi kullan
-      dataArray.forEach((data, index) => {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(data, 'text/html');
-
-        // Başlık al
-        var postTitle = doc.querySelector('title').innerText;
-
-        // Açıklama al (meta etiketi içindeki description)
-        var postDescription = doc.querySelector('meta[name="description"]').content;
-
-        // Resim al (meta etiketi içindeki og:image)
-        var postImage = doc.querySelector('meta[property="og:image"]').content;
-
-        // Yazı içeriğini oluştur
-        var postHTML = "<div class='blog-post'>";
-        postHTML += "<h2>" + postTitle + "</h2>";
-        postHTML += "<p>" + postDescription + "</p>";
-        postHTML += "<img src='" + postImage + "' alt='" + postTitle + "'>";
-        postHTML += "</div>";
-
-        // Yazı içeriğini sayfaya ekleyin
-        var blogPostsContainer = document.getElementById("blog-posts");
-        blogPostsContainer.innerHTML += postHTML;
-      });
-    })
-    .catch(error => {
-      console.error('Yazı yüklenirken bir hata oluştu:', error);
+    // Seçilen dosyaların linklerini sayfaya ekleyin
+    var blogLinksContainer = document.getElementById("blog-links");
+    randomFiles.forEach((url, index) => {
+      var linkElement = document.createElement('a');
+      linkElement.href = url;
+      linkElement.textContent = "Yazı " + (index + 1);
+      blogLinksContainer.appendChild(linkElement);
+      blogLinksContainer.appendChild(document.createElement('br'));
     });
   })
   .catch(error => {
