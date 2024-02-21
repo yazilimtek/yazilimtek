@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var file = files[i].trim();
                 if (file.endsWith(".html")) {
                     // Blog yazısının dosya yolu
-                    var postFileName = blogFolder + file; }
+                    var postFileName = blogFolder + file; 
 
         // index.html dosyasını atlayın
         if (postFileName === indexFileName) {
@@ -62,5 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // İsteği gönder
         xhr.send();
+    }
     }
 });
