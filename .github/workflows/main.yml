@@ -1,0 +1,16 @@
+name: Daily Sitemap Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Her gün saat 00:00'da çalıştır
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Run Bash Script
+      run: bash update_sitemap.sh
