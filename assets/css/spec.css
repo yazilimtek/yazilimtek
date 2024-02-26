@@ -4,3 +4,11 @@ font-weight:600;
 padding:2% 2% 2% 3%;
 
 }
+
+/* Yalnızca blog/index.html sayfasında çalışır */
+body.blog-index .button {
+  .more-services .card-body {
+      padding:10px 10px;
+      margin: 10px 0px -10px 0px;
+  }
+}
