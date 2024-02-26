@@ -91,22 +91,6 @@
 var sitemapURL = 'https://yazilimteknisyeni.com.tr/sitemap.xml';
 var sonYazilarDiv = document.getElementById('blog-body');
 function fetchSitemapLinks(url) {
-
-            Array.from(locTags).forEach(locTag => {
-                var url = locTag.textContent;
-                if (url.endsWith('.html')) { 
-                  urls.push(url);
-                }
-            });
-            shuffleArray(urls); // Alınan URL'leri karıştır
-            urls.forEach(url => {
-                fetchPostData(url);
-            });
-
-  
-
-
-  
     fetch(url)
         .then(response => response.text())
         .then(data => {
@@ -114,28 +98,30 @@ function fetchSitemapLinks(url) {
             var xmlDoc = parser.parseFromString(data, 'text/xml');
             var locTags = xmlDoc.getElementsByTagName('loc');
             var urls = [];
-          
             Array.from(locTags).forEach(locTag => {
                 var url = locTag.textContent;
-                if(url.endsWith('.html')){
-                   urls.push(url);
-                  shuffleArray(urls); // Alınan URL'leri karıştır
+                if (url.endsWith('.html')) { // Sadece HTML uzantılı linkleri kontrol et
+                    urls.push(url);
+                }
+            });
+            shuffleArray(urls); // Alınan URL'leri karıştır
             urls.forEach(url => {
                 fetchPostData(url);
             });
-                  
-                fetch(url)
-                    .then(response => response.text())
-                    .then(data => {
-                        var parser = new DOMParser();
-                        var pageDoc = parser.parseFromString(data, 'text/html');
-                        var title = pageDoc.querySelector('meta[name="og:title"]').getAttribute('content');
-                        var metaDescription = pageDoc.querySelector('meta[name="description"]').getAttribute('content');
-                        var image = pageDoc.querySelector('meta[property="og:image"]').getAttribute('content');
-                        displayPost(url, title, metaDescription, image);
-                    })
-                    .catch(error => console.error('Fetch Error:', error));
-            }});
+        })
+        .catch(error => console.error('Fetch Error:', error));
+}
+
+function fetchPostData(url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            var parser = new DOMParser();
+            var pageDoc = parser.parseFromString(data, 'text/html');
+            var title = pageDoc.querySelector('meta[name="og:title"]').getAttribute('content');
+            var metaDescription = pageDoc.querySelector('meta[name="description"]').getAttribute('content');
+            var image = pageDoc.querySelector('meta[property="og:image"]').getAttribute('content');
+            displayPost(url, title, metaDescription, image);
         })
         .catch(error => console.error('Fetch Error:', error));
 }
@@ -153,6 +139,13 @@ function displayPost(url, title, description, image) {
         </a>
     `;
     sonYazilarDiv.appendChild(postDiv);
+}
+
+ function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
 fetchSitemapLinks(sitemapURL);
