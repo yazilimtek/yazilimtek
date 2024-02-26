@@ -6,7 +6,7 @@
   <meta name="robots" content="index, follow">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="language" content="Turkish">
-  <title>Yazılım Blog</title>
+  <title>Yazılım Sanatı</title>
   <meta content="yazılımcılar ve yazılım öğrenmek isteyenler için faydalı bilgiler, güncel haberler, detaylı incelemeler paylaştığım blog yazıları" name="description">
   <meta content="yazılım,yazılımcı,blog" name="keywords">
 
@@ -85,55 +85,57 @@
           <p>Yazılım sanatını daha etkin kullanabilmeniz için sektörde öne çıkan gelişmelerden derlediğimiz güncel içerikler.</p>
         </div>
 
- <div class="row" id="blog-body">
-          <div class="col-md-6 d-flex align-items-stretch">
-            <div class="card" style='background-image: url("../assets/img/more-services-1.webp");' data-aos="fade-up" data-aos-delay="100">
-              <div class="card-body">
-                <h5 class="card-title"><a aria-label="api" href="#">API/XML Hizmetleri</a></h5>
-                <p class="card-text">Web sitenize veri çekmek yada başka sitelerle veri paylaşmak için ihtiyacınız olan entegrasyonlar</p>
-                <div class="read-more"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="card" style='background-image: url("../assets/img/more-services-2.webp");' data-aos="fade-up" data-aos-delay="200">
-              <div class="card-body">
-                <h5 class="card-title"><a aria-label="güvenlik" href="#">Güvenlik</a></h5>
-                <p class="card-text">Dijital dünyadaki güvenliğiniz için gerekli araştırma ve önlemleri sizlere en iyi şekilde sağlayabiliriz.</p>
-                <div class="read-more"></div>
-              </div>
-            </div>
+<div id="blog-body" class="row"></div>
 
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch mt-4">
-            <div class="card" style='background-image: url("../assets/img/more-services-3.webp");' data-aos="fade-up" data-aos-delay="100">
-              <div class="card-body">
-                <h5 class="card-title"><a aria-label="mobil uygulama" href="#">Mobil Uygulama</a></h5>
-                <p class="card-text">Mobil cihaz kullancılarına ulaşmak için ihtiyacınız olan çözümlere bizimle kolaylıkla ulaşabilirsiniz.</p>
-                <div class="read-more"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch mt-4">
-            <div class="card" style='background-image: url("../assets/img/more-services-4.webp");' data-aos="fade-up" data-aos-delay="200">
-              <div class="card-body">
-                <h5 class="card-title"><a aria-label="daha fazla hizmet" href="#">Daha Fazlası</a></h5>
-                <p class="card-text">İşinize ve işletmenize özel çözümler için bizimle iletişime geçerek muhteşem çözümlere kolaylıkla ulaşabilirsiniz.</p>
-                <div class="read-more"><a aria-label="iletisim" href="#contact" class="scrollto"><i class="bi bi-arrow-right"></i> İletişim</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
+<script>
+var sitemapURL = 'https://yazilimteknisyeni.com.tr/sitemap.xml';
+var sonYazilarDiv = document.getElementById('blog-body');
+function fetchSitemapLinks(url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(data, 'text/xml');
+            var locTags = xmlDoc.getElementsByTagName('loc');
+            Array.from(locTags).forEach(locTag => {
+                var url = locTag.textContent;
+                if(url.endsWith('.html')){
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        var parser = new DOMParser();
+                        var pageDoc = parser.parseFromString(data, 'text/html');
+                        var title = pageDoc.querySelector('meta[name="og:title"]').getAttribute('content');
+                        var metaDescription = pageDoc.querySelector('meta[name="description"]').getAttribute('content');
+                        var image = pageDoc.querySelector('meta[property="og:image"]').getAttribute('content');
+                        displayPost(url, title, metaDescription, image);
+                    })
+                    .catch(error => console.error('Fetch Error:', error));
+            }});
+        })
+        .catch(error => console.error('Fetch Error:', error));
+}
 
-      
-      </div>
-    </section>
+function displayPost(url, title, description, image) {
+    var postDiv = document.createElement('div');
+    postDiv.classList.add('col-md-6', 'd-flex', 'align-items-stretch'); // Class ekleme işlemi
+    postDiv.innerHTML = `
+        <a href="${url}" target="_blank">
+<div class="card" style="background-image: url('${image}'); data-aos='fade-up' data-aos-delay='100' alt='${title}'>
+     <div class="card-body">
+                <h5 class="card-title">"${title}"</h5>
+                <p class="card-text">"${description}"</p>
+                </div></div>
+        </a>
+    `;
+    sonYazilarDiv.appendChild(postDiv);
+}
 
-  </main><!-- End #main -->
+fetchSitemapLinks(sitemapURL);
+</script>
 
-  <!-- ======= Footer ======= -->
-  <footer>
-    <div include-html="../content/footer.html"></div>
+    
+
 <script>
   includeHTML("include-html");
 </script>
@@ -142,6 +144,4 @@
   <!-- End W3Counter Web Analytics -->
   </footer><!-- End Footer -->
 </body>
-
 </html>
-
