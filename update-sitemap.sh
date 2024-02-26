@@ -10,6 +10,7 @@ find blog/ -type f -name "*.html" | while read file; do
 
     # URL'yi oluştur
     url="https://yazilimteknisyeni.com.tr/${file}"
+    url=${url/index.html/}
 
     # Sitemap dosyasına eklemek için lastmod, changefreq ve priority değerlerini içeren XML'i oluştur
     echo "<url>" >> "$SITEMAP_FILE"
@@ -18,4 +19,5 @@ find blog/ -type f -name "*.html" | while read file; do
     echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
     echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
     echo "</url>" >> "$SITEMAP_FILE"
-done
+done | sort -k2,2 -r >> "$SITEMAP_FILE"
+
