@@ -91,15 +91,39 @@
 var sitemapURL = 'https://yazilimteknisyeni.com.tr/sitemap.xml';
 var sonYazilarDiv = document.getElementById('blog-body');
 function fetchSitemapLinks(url) {
+
+            Array.from(locTags).forEach(locTag => {
+                var url = locTag.textContent;
+                if (url.endsWith('.html')) { 
+                  urls.push(url);
+                }
+            });
+            shuffleArray(urls); // Alınan URL'leri karıştır
+            urls.forEach(url => {
+                fetchPostData(url);
+            });
+
+  
+
+
+  
     fetch(url)
         .then(response => response.text())
         .then(data => {
             var parser = new DOMParser();
             var xmlDoc = parser.parseFromString(data, 'text/xml');
             var locTags = xmlDoc.getElementsByTagName('loc');
+            var urls = [];
+          
             Array.from(locTags).forEach(locTag => {
                 var url = locTag.textContent;
                 if(url.endsWith('.html')){
+                   urls.push(url);
+                  shuffleArray(urls); // Alınan URL'leri karıştır
+            urls.forEach(url => {
+                fetchPostData(url);
+            });
+                  
                 fetch(url)
                     .then(response => response.text())
                     .then(data => {
