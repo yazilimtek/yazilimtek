@@ -5,8 +5,7 @@ padding:2% 2% 2% 3%;
 
 }
 
-/* Yalnızca blog/index.html sayfasında çalışır */
-#blog-body .more-services .card-body {
+#blog-body.card-body {
       padding:10px 10px;
       margin: 10px 0px -10px 0px;
   }
