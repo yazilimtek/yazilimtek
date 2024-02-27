@@ -25,3 +25,7 @@ document.body.appendChild(script6);
 var script7 = document.createElement('script');
 script7.src = 'https://yazilimteknisyeni.com.tr/assets/vendor/bootstrap/js/bootstrap.bundle.min.js';
 document.body.appendChild(script7);
+
+var script8 = document.createElement('script');
+script8.src = 'https://www.w3counter.com/tracker.js?id=151587';
+document.body.appendChild(script8);
