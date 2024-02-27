@@ -857,12 +857,21 @@
 
   </main><!-- End #main -->
 <!-- ======= Footer Placeholder Section ======= -->
- <footer>
-  <div include-html="../content/footer.html"></div>
+
+<taban></taban>
 <script>
-  includeHTML("include-html");
+  // Başka klasördeki HTML dosyasını yükle
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '../content/footer.html', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      // Footer alanından sonra başka klasördeki HTML dosyasını enjekte et
+      document.querySelector('taban').insertAdjacentHTML('afterend', xhr.responseText);
+    }
+  };
+  xhr.send();
 </script>
- </footer>
+
 <!-- ======= Footer Placeholder Section ======= -->
  </body>
 </html>
