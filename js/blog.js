@@ -1,4 +1,3 @@
-<script>
 var sitemapURL = 'https://yazilimteknisyeni.com.tr/sitemap.xml';
 var sonYazilarDiv = document.getElementById('blog-body');
 function fetchSitemapLinks(url) {
@@ -60,4 +59,3 @@ function displayPost(url, title, description, image) {
 }
 
 fetchSitemapLinks(sitemapURL);
-</script>   
