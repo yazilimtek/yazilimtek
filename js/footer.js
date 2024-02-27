@@ -1,3 +1,5 @@
+import { loadScript } from 'https://yazilimteknisyeni.com.tr/js/utils.js';
+
 Promise.all([
     loadScript('https://yazilimteknisyeni.com.tr/assets/vendor/aos/aos.js'),
     loadScript('https://yazilimteknisyeni.com.tr/assets/vendor/swiper/swiper-bundle.min.js'),
