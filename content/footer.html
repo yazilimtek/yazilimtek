@@ -43,7 +43,9 @@
   <!-- Template Main JS File -->
   <script src="https://yazilimteknisyeni.com.tr/assets/js/main.js"></script>
 <script>
-
-          AOS.init();
-   
+$(function() {
+    AOS.init({
+        once: true // this one if you want to load animation once else you can remove it
+    });
+});
 </script>
