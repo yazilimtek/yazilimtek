@@ -208,6 +208,9 @@
   /**
    * Initiate Pure Counter 
    */
-  new PureCounter();
+  if (typeof PureCounter === 'function') {
+    new PureCounter();
+}
 
+ 
 })()
