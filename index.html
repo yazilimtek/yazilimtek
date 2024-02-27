@@ -856,22 +856,9 @@
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
-<!-- ======= Footer Placeholder Section ======= -->
-
-<taban></taban>
-<script>
-  // Başka klasördeki HTML dosyasını yükle
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '../content/footer.html', true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      // Footer alanından sonra başka klasördeki HTML dosyasını enjekte et
-      document.querySelector('taban').insertAdjacentHTML('afterend', xhr.responseText);
-    }
-  };
-  xhr.send();
-</script>
-
-<!-- ======= Footer Placeholder Section ======= -->
+ <!-- ======= Footer ======= -->
+  <taban></taban>
+<script src="https://yazilimteknisyeni.com.tr/js/import.js"></script>
+<!-- ======= End Footer ======= -->  
  </body>
 </html>
