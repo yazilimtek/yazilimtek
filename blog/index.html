@@ -93,6 +93,22 @@
 
 <div id="blog-body" class="row"></div>
       </main>
+
+ <!-- ======= Footer ======= -->
+<taban></taban>
+<script>
+  // Başka klasördeki HTML dosyasını yükle
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '../content/footer.html', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      // Footer alanından sonra başka klasördeki HTML dosyasını enjekte et
+      document.querySelector('taban').insertAdjacentHTML('afterend', xhr.responseText);
+    }
+  };
+  xhr.send();
+</script>
+<!-- End Footer -->
 <script>
 var sitemapURL = 'https://yazilimteknisyeni.com.tr/sitemap.xml';
 var sonYazilarDiv = document.getElementById('blog-body');
@@ -155,26 +171,6 @@ function displayPost(url, title, description, image) {
 }
 
 fetchSitemapLinks(sitemapURL);
-</script>   
-
-  
-  <!-- ======= Footer ======= -->
-<taban></taban>
-<script>
-  // Başka klasördeki HTML dosyasını yükle
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '../content/footer.html', true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      // Footer alanından sonra başka klasördeki HTML dosyasını enjekte et
-      document.querySelector('taban').insertAdjacentHTML('afterend', xhr.responseText);
-    }
-  };
-  xhr.send();
-</script>
-<!-- End Footer -->
-  <!-- Start W3Counter Web Analytics -->
-  <script src="https://www.w3counter.com/tracker.js?id=151587"></script>
-  <!-- End W3Counter Web Analytics -->
+</script>           
 </body>
 </html>
