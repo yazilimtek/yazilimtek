@@ -158,10 +158,21 @@ fetchSitemapLinks(sitemapURL);
 </script>   
 
   
-<div include-html="https://yazilimteknisyeni.com.tr/content/footer.html"></div>
+  <!-- ======= Footer ======= -->
+<taban></taban>
 <script>
-  includeHTML("include-html");
+  // Başka klasördeki HTML dosyasını yükle
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '../content/footer.html', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      // Footer alanından sonra başka klasördeki HTML dosyasını enjekte et
+      document.querySelector('taban').insertAdjacentHTML('afterend', xhr.responseText);
+    }
+  };
+  xhr.send();
 </script>
+<!-- End Footer -->
   <!-- Start W3Counter Web Analytics -->
   <script src="https://www.w3counter.com/tracker.js?id=151587"></script>
   <!-- End W3Counter Web Analytics -->
