@@ -22,3 +22,16 @@ margin: 10px 0px;
 .portfolio-description{
 margin:5%;
 }
+
+
+  [data-aos] {
+    pointer-events: auto !important;
+  }
+
+  html:not(.no-js) [data-aos^=fade][data-aos^=fade] {
+    opacity: 1 !important;
+  }
+
+  html:not(.no-js) [data-aos=fade-up] {
+    transform: none !important;
+  }
