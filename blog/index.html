@@ -147,7 +147,7 @@ function displayPost(url, title, description, image) {
     var postDiv = document.createElement('div');
     postDiv.classList.add('col-md-6', 'd-flex', 'align-items-stretch'); // Class ekleme işlemi
     postDiv.innerHTML = `
-        <a href="${url}" target="_blank">
+        <a href="${url}">
 <div class="card" style="background-image: url('${image}')"; data-aos="fade-up" data-aos-delay="100" alt='${title}'">
      <div class="card-body">
                 <h5 class="card-title">${title}</h5>
