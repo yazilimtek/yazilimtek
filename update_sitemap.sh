@@ -4,19 +4,19 @@
 SITEMAP_FILE="sitemap.xml"
 
 echo "<url>" >> "$SITEMAP_FILE"
-echo "  <loc>https://yazilimteknisyeni.com.tr/hakkimizda.html</loc>" >> "$SITEMAP_FILE"
+echo "  <loc>https://yazilimteknisyeni.com.tr/pages/hakkimizda.html</loc>" >> "$SITEMAP_FILE"
 echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
 echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
 echo "</url>" >> "$SITEMAP_FILE"
 
 echo "<url>" >> "$SITEMAP_FILE"
-echo "  <loc>https://yazilimteknisyeni.com.tr/gizlilik-politikasi.html</loc>" >> "$SITEMAP_FILE"
+echo "  <loc>https://yazilimteknisyeni.com.tr/pages/gizlilik-politikasi.html</loc>" >> "$SITEMAP_FILE"
 echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
 echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
 echo "</url>" >> "$SITEMAP_FILE"
 
 echo "<url>" >> "$SITEMAP_FILE"
-echo "  <loc>https://yazilimteknisyeni.com.tr/kullanim-kosullari.html</loc>" >> "$SITEMAP_FILE"
+echo "  <loc>https://yazilimteknisyeni.com.tr/pages/kullanim-kosullari.html</loc>" >> "$SITEMAP_FILE"
 echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
 echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
 echo "</url>" >> "$SITEMAP_FILE"
