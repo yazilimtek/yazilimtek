@@ -9,19 +9,6 @@ echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
 echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
 echo "</url>" >> "$SITEMAP_FILE"
 
-echo "<url>" >> "$SITEMAP_FILE"
-echo "  <loc>https://yazilimteknisyeni.com.tr/pages/gizlilik-politikasi.html</loc>" >> "$SITEMAP_FILE"
-echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
-echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
-echo "</url>" >> "$SITEMAP_FILE"
-
-echo "<url>" >> "$SITEMAP_FILE"
-echo "  <loc>https://yazilimteknisyeni.com.tr/pages/kullanim-kosullari.html</loc>" >> "$SITEMAP_FILE"
-echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
-echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
-echo "</url>" >> "$SITEMAP_FILE"
-
-
 # Belirli bir klasördeki .html uzantılı dosyaları sitemap dosyasına ekleme
 find blog/ -type f -name "*.html" -not -name "index.html" | while read file; do
     # Dosyanın son değiştirilme tarihini al
