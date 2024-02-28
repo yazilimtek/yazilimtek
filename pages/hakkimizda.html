@@ -27,7 +27,7 @@
   <meta property="og:image" content="https://yazilimteknisyeni.com.tr/blog/img/yazilim-blog.webp" />
   <meta property="og:image:width" content="2560" />
   <meta property="og:image:height" content="1440" />
-  <link rel="canonical" href="https://yazilimteknisyeni.com.tr/blog/index.html" />
+  <link rel="canonical" href="https://yazilimteknisyeni.com.tr/pages/hakkimizda.html" />
   
   <!-- ======= Head Placeholder Section ======= -->
 
@@ -95,20 +95,8 @@ Sizin için en iyi çözümü sunmak için buradayız. Bizimle iletişime geçme
       </main>
 
  <!-- ======= Footer ======= -->
-<taban></taban>
-<script>
-  // Başka klasördeki HTML dosyasını yükle
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '../content/footer.html', true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      // Footer alanından sonra başka klasördeki HTML dosyasını enjekte et
-      document.querySelector('taban').insertAdjacentHTML('afterend', xhr.responseText);
-    }
-  };
-  xhr.send();
-</script>
-<script src="https://yazilimteknisyeni.com.tr/js/blog.js"></script>        
-<!-- End Footer -->
+  <taban></taban>
+<script src="https://yazilimteknisyeni.com.tr/js/import.js"></script>
+<!-- ======= End Footer ======= --> 
 </body>
 </html>
