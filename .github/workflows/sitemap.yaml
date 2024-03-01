@@ -3,7 +3,7 @@ name: Update Sitemap
 on:
   push:
     branches:
-      - main  # Ana dalda yapılan değişiklikleri izle, dal adını değiştirebilirsiniz
+      - master  # Ana dalda yapılan değişiklikleri izle, dal adını değiştirebilirsiniz
 
 jobs:
   update-sitemap:
