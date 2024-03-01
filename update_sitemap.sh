@@ -2,7 +2,7 @@
 
 # Sitemap dosyasının yolu
 SITEMAP_FILE="sitemap.xml"
-
+echo"<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>" >> "$SITEMAP_FILE"
 echo "<url>" >> "$SITEMAP_FILE"
 echo "  <loc>https://yazilimteknisyeni.com.tr/</loc>" >> "$SITEMAP_FILE"
 echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
