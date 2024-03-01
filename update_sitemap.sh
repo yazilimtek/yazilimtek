@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Sitemap dosyasının yolu
-SITEMAP_FILE="sitemaps.xml"
+SITEMAP_FILE="sitemap.xml"
 
 echo "<url>" >> "$SITEMAP_FILE"
 echo "  <loc>https://yazilimteknisyeni.com.tr/</loc>" >> "$SITEMAP_FILE"
