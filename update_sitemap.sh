@@ -4,6 +4,18 @@
 SITEMAP_FILE="sitemap.xml"
 
 echo "<url>" >> "$SITEMAP_FILE"
+echo "  <loc>https://yazilimteknisyeni.com.tr/</loc>" >> "$SITEMAP_FILE"
+echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
+echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
+echo "</url>" >> "$SITEMAP_FILE"
+
+echo "<url>" >> "$SITEMAP_FILE"
+echo "  <loc>https://yazilimteknisyeni.com.tr/blog/</loc>" >> "$SITEMAP_FILE"
+echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
+echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
+echo "</url>" >> "$SITEMAP_FILE"
+
+echo "<url>" >> "$SITEMAP_FILE"
 echo "  <loc>https://yazilimteknisyeni.com.tr/pages/hakkimizda.html</loc>" >> "$SITEMAP_FILE"
 echo "  <changefreq>weekly</changefreq>" >> "$SITEMAP_FILE"
 echo "  <priority>0.8</priority>" >> "$SITEMAP_FILE"
