@@ -3,7 +3,7 @@ name: Site Haritası Güncelle
 on:
   push:
     branches:
-      - mastar  # Ana dalda yapılan değişiklikleri izle, dal adını değiştirebilirsiniz
+      - master  # Ana dalda yapılan değişiklikleri izle, dal adını değiştirebilirsiniz
 
 jobs:
   update-sitemap:
