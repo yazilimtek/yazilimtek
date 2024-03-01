@@ -1,3 +1,13 @@
+name: Master Sitemap Update
+
+on:
+  schedule:
+    - cron: '*/2* * * *' 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
  steps:
       - name: Create a Sitemap
         id: sitemap
