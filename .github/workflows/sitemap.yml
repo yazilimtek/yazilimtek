@@ -9,7 +9,7 @@ jobs:
   update-sitemap:
     runs-on: ubuntu-latest
 
- steps:
+steps:
     - name: Check out repository
       uses: Actions/checkout@v4.2.0
     
