@@ -27,16 +27,3 @@ jobs:
         with:
           name: sitemap  # Artifakt adını burada belirtin, bu adı daha sonra kullanacağız
           path: sitemap.xml  # Sitemap dosyasının yolunu belirtin
-
-      # Statik dosyaları oluşturmak veya hazırlamak için gerekli adımları ekleyin
-
-      - name: Deploy to GitHub Pages
-        uses: actions/upload-artifact@v4
-        with:
-          name: sitemap  # Yukarıda belirtilen artifakt adını buraya ekleyin
-          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub token'ını kullanarak oturum açın
-          path: sitemap.xml  # Sitemap dosyasının yolunu belirtin
-          # Opsiyonel: Aşağıdaki satırları kullanarak isteğe bağlı parametreleri belirleyebilirsiniz
-          # branch: gh-pages  # Yayınlamak istediğiniz dalı belirtin, varsayılan olarak "gh-pages" kullanılır
-          # folder: path/to/pages  # Sayfaların bulunduğu klasörün yolu, varsayılan olarak repository kökü kullanılır
-          # commit-message: Update Sitemap  # Commit mesajını özelleştirin, varsayılan olarak "Deploy to GitHub Pages" kullanılır
