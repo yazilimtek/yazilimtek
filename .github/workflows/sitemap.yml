@@ -8,6 +8,10 @@ on:
 jobs:
   update-sitemap:
     runs-on: ubuntu-latest
+
+ steps:
+    - name: Check out repository
+      uses: Actions/checkout@v4.2.0
     
 
     - name: Add HTML files to sitemap
