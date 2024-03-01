@@ -1,4 +1,4 @@
-name: Update Sitemap
+name: Site Haritası Güncelle
 
 on:
   push:
