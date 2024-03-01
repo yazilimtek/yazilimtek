@@ -19,7 +19,7 @@ jobs:
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
           # Burada site haritası oluşturma komutlarını ekleyin
           # Örneğin:
-          find . \( -path "./blog" -o -path "./pages" \) -prune -o -type f -name "*.html" -exec sh -c 'echo "<url><loc>https://yazilimteknisyeni.com.tr/${1//\//}<loc></url>"' _ {} \; >> sitemap.xml
+          find . \( -path "/blog" -o -path "/pages" \) -prune -o -type f -name "*.html" -exec sh -c 'echo "<url><loc>https://yazilimteknisyeni.com.tr/${1//\//}<loc></url>"' _ {} \; >> sitemap.xml
           echo '</urlset>' >> sitemap.xml
 
       - name: Upload Sitemap Artifact
