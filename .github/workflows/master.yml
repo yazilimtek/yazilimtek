@@ -6,6 +6,5 @@
           url: ${{ inputs.url }}
           cache: ${{ inputs.cache }}
           cache-key: ${{ inputs.cache-key }}
-
-  Usage: sitemap <url> [options] -p -f -L 
-  sitemap https://yazilimteknisyeni.com.tr -p "/directory/to/save/sitemap" -f Daily -L Information
+          Usage: sitemap <url> [options] -p -f -L 
+          sitemap https://yazilimteknisyeni.com.tr -p "/directory/to/save/sitemap" -f Daily -L Information
