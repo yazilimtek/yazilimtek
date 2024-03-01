@@ -21,9 +21,3 @@ jobs:
           # Örneğin:
           find . \( -path "/blog" -o -path "/pages" \) -prune -o -type f -name "*.html" -exec sh -c 'echo "<url><loc>https://yazilimteknisyeni.com.tr/${1//\//}<loc></url>"' _ {} \; >> sitemap.xml
           echo '</urlset>' >> sitemap.xml
-
-      - name: Upload Sitemap Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: sitemap.xml  # Artifakt adını burada belirtin, bu adı daha sonra kullanacağız
-          path: sitemap.xml  # Sitemap dosyasının yolunu belirtin
