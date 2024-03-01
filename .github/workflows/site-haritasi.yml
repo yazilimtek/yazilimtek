@@ -35,6 +35,7 @@ jobs:
         with:
           artifact-name: sitemap  # Yukarıda belirtilen artifakt adını buraya ekleyin
           token: ${{ secrets.GITHUB_TOKEN }}  # GitHub token'ını kullanarak oturum açın
+          path: sitemap.xml  # Sitemap dosyasının yolunu belirtin
           # Opsiyonel: Aşağıdaki satırları kullanarak isteğe bağlı parametreleri belirleyebilirsiniz
           # branch: gh-pages  # Yayınlamak istediğiniz dalı belirtin, varsayılan olarak "gh-pages" kullanılır
           # folder: path/to/pages  # Sayfaların bulunduğu klasörün yolu, varsayılan olarak repository kökü kullanılır
