@@ -2,7 +2,7 @@ name: Master Sitemap Update
 
 on:
   schedule:
-    - cron: '*/2 * * * *' 
+    - cron: '*/9 * * * *' 
 
 jobs:
   build:
