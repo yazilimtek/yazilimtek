@@ -9,9 +9,6 @@ jobs:
   update-sitemap:
     runs-on: ubuntu-latest
     
-    steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
 
     - name: Add HTML files to sitemap
       run: |
