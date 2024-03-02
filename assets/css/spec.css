@@ -31,24 +31,29 @@ margin:5%;
   }
 
 .teklif-formu-435{
-margin-bottom:20px;
+      margin-bottom:20px;
+      margin-top:5px;
 }
 
 .teklif-button{
-  border-radius: 10px;
-    width: 100px;
-    height: 33px;
-    color: black;
-    background-color: white;
+      border-radius: 10px;
+      width: 100px;
+      height: 33px;
+      color: black;
+      background-color: white;
 }
 
 .teklif{
       border-color: beige;
-    border-style: solid;
+      border-style: solid;
 }
 
 .not-bolumu{
       padding:15px;
+}
+
+text-area.teklif-formu-435{
+      min-height:150px;
 }
 
 @media (max-width: 768px)
