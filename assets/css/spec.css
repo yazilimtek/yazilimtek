@@ -34,3 +34,11 @@ margin:5%;
 min-width:360px;
 margin-bottom:20px;
 }
+
+.teklif-button{
+  border-radius: 10px;
+    width: 100px;
+    height: 33px;
+    color: black;
+    background-color: white;
+}
