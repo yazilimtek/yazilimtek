@@ -48,6 +48,10 @@ margin-bottom:20px;
     border-style: solid;
 }
 
+.not-bolumu{
+      padding:15px;
+}
+
 @media (max-width: 768px)
 .col-md-6 {
     flex: 0 0 auto;
