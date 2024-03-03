@@ -27,10 +27,10 @@ jobs:
           
           # Sitemap dosyasını güncelle
           if [ -f "sitemapi.xml" ]; then
-              cat temp_sitemap.xml >> sitemap.xml
+              cat temp_sitemap.xml >> sitemapi.xml
               rm temp_sitemap.xml
           else
-              mv temp_sitemap.xml sitemap.xml
+              mv temp_sitemap.xml sitemapi.xml
           fi
           
           git config --local user.email "action@github.com"
