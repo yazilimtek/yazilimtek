@@ -13,12 +13,12 @@ jobs:
       
       - name: Generate sitemap
         run: |
-          find . -type f -name "*.html" > files.txt
+          find ./ -type d \( -name "blog" -o -name "pages" -o -name "." \) -prune -o -type f -name "*.html" -print > files.txt
           echo '<?xml version="1.0" encoding="UTF-8"?>' > temp_sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> temp_sitemap.xml
           today=$(date +%Y-%m-%d)
           while IFS= read -r line; do
-              link=$(echo $line | sed 's/^\.\///' | sed 's/^\///')
+              link=$(echo $line | sed 's/^\.\///' | sed 's/index\.html$//' | sed 's/^\///')
               echo "  <url>" >> temp_sitemap.xml
               echo "    <loc>https://yazilimteknisyeni.com.tr/$link</loc>" >> temp_sitemap.xml
               echo "    <lastmod>$today</lastmod>" >> temp_sitemap.xml
@@ -29,13 +29,19 @@ jobs:
           echo '</urlset>' >> temp_sitemap.xml
           rm files.txt
           
-          # Sitemap dosyasını güncelle
-         if [ -f "sitemapi.xml" ]; then
-              cat temp_sitemap.xml >> sitemapi.xml
+          #Sitemap dosyasını güncelle
+          if [ -f "sitemapi.xml" ]; then
+              diff=$(diff -q sitemapi.xml temp_sitemap.xml)
+              if [ "$diff" != "" ]; then
+                  tail -n +3 temp_sitemap.xml >> sitemapi.xml
+              fi
               rm temp_sitemap.xml
           else
               mv temp_sitemap.xml sitemapi.xml
           fi
+
+
+          
           
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
