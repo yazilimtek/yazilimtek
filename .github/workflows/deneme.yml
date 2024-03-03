@@ -31,7 +31,10 @@ jobs:
           
           #Sitemap dosyasını güncelle
           if [ -f "sitemapi.xml" ]; then
-              cat temp_sitemap.xml >> sitemapi.xml
+              diff=$(diff -q sitemapi.xml temp_sitemap.xml)
+              if [ "$diff" != "" ]; then
+                  tail -n +3 temp_sitemap.xml >> sitemapi.xml
+              fi
               rm temp_sitemap.xml
           else
               mv temp_sitemap.xml sitemapi.xml
