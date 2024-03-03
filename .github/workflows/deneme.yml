@@ -2,7 +2,7 @@ name: Hourly File Creation
 
 on:
   schedule:
-    - cron: '0/5 * * * *' # Her saat başında çalıştır
+    - cron: '0 0 * */3 *' # Her saat başında çalıştır
 
 jobs:
   create_files:
