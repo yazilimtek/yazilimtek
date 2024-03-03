@@ -26,7 +26,7 @@ jobs:
           rm files.txt
           
           # Sitemap dosyasını güncelle
-          if [ -f "sitemap.xml" ]; then
+          if [ -f "sitemapi.xml" ]; then
               cat temp_sitemap.xml >> sitemap.xml
               rm temp_sitemap.xml
           else
@@ -35,6 +35,6 @@ jobs:
           
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add sitemap.xml
+          git add sitemapi.xml
           git commit -m "Update sitemap.xml [skip ci]"
           git push
