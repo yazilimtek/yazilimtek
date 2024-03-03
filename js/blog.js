@@ -10,7 +10,7 @@ function fetchSitemapLinks(url) {
             var urls = [];
             Array.from(locTags).forEach(locTag => {
                 var url = locTag.textContent;
-                if (url.endsWith('.html')) { // Sadece HTML uzantılı linkleri kontrol et
+                if (url.includes('blog') && url.endsWith('.html') && !url.endsWith('index.html')) { // 'blog' içeren, '.html' uzantılı ve 'index.html' olmayan linkleri kontrol et
                     urls.push(url);
                 }
             });
@@ -21,6 +21,7 @@ function fetchSitemapLinks(url) {
         })
         .catch(error => console.error('Fetch Error:', error));
 }
+
 
 function fetchPostData(url) {
     fetch(url)
