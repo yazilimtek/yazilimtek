@@ -16,10 +16,14 @@ jobs:
           find . -type f -name "*.html" > files.txt
           echo '<?xml version="1.0" encoding="UTF-8"?>' > temp_sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> temp_sitemap.xml
+          today=$(date +%Y-%m-%d)
           while IFS= read -r line; do
               link=$(echo $line | sed 's/^\.\///' | sed 's/^\///')
               echo "  <url>" >> temp_sitemap.xml
               echo "    <loc>https://yazilimteknisyeni.com.tr/$link</loc>" >> temp_sitemap.xml
+              echo "    <lastmod>$today</lastmod>" >> temp_sitemap.xml
+              echo "    <changefreq>daily</changefreq>" >> temp_sitemap.xml
+              echo "    <priority>1</priority>" >> temp_sitemap.xml
               echo "  </url>" >> temp_sitemap.xml
           done < files.txt
           echo '</urlset>' >> temp_sitemap.xml
@@ -27,7 +31,10 @@ jobs:
           
           # Sitemap dosyasını güncelle
           if [ -f "sitemapi.xml" ]; then
-              cat temp_sitemap.xml >> sitemapi.xml
+              diff=$(diff -q sitemapi.xml temp_sitemap.xml)
+              if [ "$diff" != "" ]; then
+                  tail -n +3 temp_sitemap.xml >> sitemapi.xml
+              fi
               rm temp_sitemap.xml
           else
               mv temp_sitemap.xml sitemapi.xml
