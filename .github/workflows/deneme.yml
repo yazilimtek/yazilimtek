@@ -17,7 +17,7 @@ jobs:
           echo '<?xml version="1.0" encoding="UTF-8"?>' > temp_sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> temp_sitemap.xml
           while IFS= read -r line; do
-              link=$(echo $line | sed 's/^\.\///' | sed 's/index\.html$//' | sed 's/^\///')
+              link=$(echo $line | sed 's/^\.\///' | sed 's/^\///')
               echo "  <url>" >> temp_sitemap.xml
               echo "    <loc>https://yazilimteknisyeni.com.tr/$link</loc>" >> temp_sitemap.xml
               echo "  </url>" >> temp_sitemap.xml
