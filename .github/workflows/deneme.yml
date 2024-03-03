@@ -1,24 +1,40 @@
-name: Hourly File Creation
+name: Günlük Sitemap Oluşturma
 
 on:
   schedule:
-    - cron: '0 0 * */3 *' # Her saat başında çalıştır
+    - cron: '0 */3 * * *' # Her gün 00:00'da çalıştır
 
 jobs:
-  create_files:
+  create_sitemap:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Create files
+      
+      - name: Generate sitemap
         run: |
-          touch deneme.txt
-
-      - name: Commit changes
-        run: |
+          find . -type f -name "*.html" > files.txt
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > temp_sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> temp_sitemap.xml
+          while IFS= read -r line; do
+              link=$(echo $line | sed 's/^\.\///' | sed 's/index\.html$//' | sed 's/^\///')
+              echo "  <url>" >> temp_sitemap.xml
+              echo "    <loc>https://yazilimteknisyeni.com.tr$link</loc>" >> temp_sitemap.xml
+              echo "  </url>" >> temp_sitemap.xml
+          done < files.txt
+          echo '</urlset>' >> temp_sitemap.xml
+          rm files.txt
+          
+          # Sitemap dosyasını güncelle
+          if [ -f "sitemap.xml" ]; then
+              cat temp_sitemap.xml >> sitemap.xml
+              rm temp_sitemap.xml
+          else
+              mv temp_sitemap.xml sitemap.xml
+          fi
+          
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Add hourly files [skip ci]"
+          git add sitemap.xml
+          git commit -m "Update sitemap.xml [skip ci]"
           git push
