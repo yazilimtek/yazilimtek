@@ -40,9 +40,6 @@ jobs:
               mv temp_sitemap.xml sitemapi.xml
           fi
 
-
-          
-          
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add sitemapi.xml
