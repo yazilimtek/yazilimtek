@@ -13,7 +13,7 @@ jobs:
       
       - name: Generate sitemap
         run: |
-          find . \( -path "./blog" -o -path "./pages" \) -prune -o -type f -name "*.html" -print > files.txt
+          find . \( -path "./blog/" -o -path "./pages/" \) -prune -o -type f -name "*.html" -print > files.txt
           echo '<?xml version="1.0" encoding="UTF-8"?>' > temp_sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> temp_sitemap.xml
           today=$(date +%Y-%m-%d)
