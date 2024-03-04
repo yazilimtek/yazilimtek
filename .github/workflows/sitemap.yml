@@ -31,10 +31,10 @@ jobs:
           
           #Sitemap dosyasını güncelle
           if [ -f "sitemap.xml" ]; then
-              # Sitemap Dosyası Güncel
-              echo "Mevcut sitemap dosyası bulundu, hiçbir işlem yapılmadı."
+             mv temp_sitemap.xml sitemap.xml
+             echo "Mevcut sitemap dosyası bulundu, üzerine yazıldı."
           else
-              mv temp_sitemap.xml sitemap.xml
+             mv temp_sitemap.xml sitemap.xml
           fi
 
           git config --local user.email "action@github.com"
