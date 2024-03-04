@@ -2,7 +2,7 @@ name: Günlük Sitemap Oluşturma
 
 on:
   schedule:
-    - cron: '*/10 * * * *' # Her gün 00:00'da çalıştır
+    - cron: '* * * * *' # Her gün 00:00'da çalıştır
 
 jobs:
   create_sitemap:
