@@ -41,5 +41,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add sitemap.xml
-          git commit -m "Update sitemap.xml [skip ci]"
+          git commit -m "Update sitemap.xml"
           git push
