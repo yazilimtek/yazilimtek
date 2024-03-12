@@ -35,6 +35,10 @@ margin: 10px 0px;
       margin-left:0;
 }
 
+.portfolio-description a {
+color:darkblue;
+}
+
 
 [data-aos] {
     pointer-events: auto !important;
