@@ -2,6 +2,12 @@ li{
       margin-bottom:5px;
 }
 
+.breadcrumbs ol li a{
+  color:darkblue;
+  font-weight:600;
+  letter-spacing: 1px;
+}
+
 .text-bold{
 width:90%;
 font-weight:600;
