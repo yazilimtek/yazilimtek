@@ -1584,21 +1584,21 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #fff;
+  background: cadetblue;
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
   padding: 30px 0;
-  color: #222222;
+  color: white;
   font-size: 14px;
 }
 
 #footer .credits {
   font-size: 13px;
   padding-top: 5px;
-  color: #222222;
+  color: white;
 }
 
 #footer .footer-links a {
-  color: #222222;
+  color: white;
   padding-left: 15px;
 }
 
@@ -1607,5 +1607,5 @@ section {
 }
 
 #footer .footer-links a:hover {
-  color: #3498db;
+  color: black;
 }
