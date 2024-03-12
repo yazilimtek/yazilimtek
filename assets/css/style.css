@@ -1584,10 +1584,10 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #6495ed;
+  background: #0000FF;
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
   padding: 30px 0;
-  color: black;
+  color: white;
   font-size: 14px;
 }
 
@@ -1598,7 +1598,7 @@ section {
 }
 
 #footer .footer-links a {
-  color: darkblue !important;
+  color: white !important;
   padding-left: 15px;
 }
 
@@ -1607,5 +1607,5 @@ section {
 }
 
 #footer .footer-links a:hover {
-  color: black;
+  color: blue;
 }
