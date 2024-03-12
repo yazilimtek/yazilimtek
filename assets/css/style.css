@@ -1594,8 +1594,12 @@ section {
 #footer .credits {
   font-size: 13px;
   padding-top: 5px;
-  color: black;
+  color: white;
 }
+
+ #footer .credits a{
+  color: white;
+} 
 
 #footer .footer-links a {
   color: white !important;
