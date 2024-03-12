@@ -1598,7 +1598,7 @@ section {
 }
 
 #footer .footer-links a {
-  color: black;
+  color: darkblue !important;
   padding-left: 15px;
 }
 
