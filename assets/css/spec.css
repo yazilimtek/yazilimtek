@@ -20,7 +20,7 @@ margin: 10px 0px;
 }
 
 .portfolio-description{
-      width:80%;
+      width:70%;
       margin:5%;
       margin-left:0;
 }
@@ -58,8 +58,13 @@ textarea.teklif-formu-435{
       min-height:150px;
 }
 
-@media (max-width: 768px)
+@media (max-width: 768px){
 .col-md-6 {
     flex: 0 0 auto;
     width: 100%;
+}
+.portfolio-description{
+      width:90%;
+      margin:5%;
+}
 }
