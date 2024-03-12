@@ -36,7 +36,8 @@ margin: 10px 0px;
 }
 
 .portfolio-description a {
-font-weight: 500;
+      font-weight: 500;
+      color:darkblue !important;
 }
 
 
