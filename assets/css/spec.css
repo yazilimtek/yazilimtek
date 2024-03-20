@@ -2,6 +2,23 @@ li{
       margin-bottom:5px;
 }
 
+.bi::before,
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bi-arrow-up-short::before { content: "\f145"; }
+
 .breadcrumbs ol li a{
   color:darkblue;
   font-weight:600;
